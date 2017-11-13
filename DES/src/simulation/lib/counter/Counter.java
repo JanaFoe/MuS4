@@ -26,9 +26,8 @@ public abstract class Counter implements IStatisticObject{
 	private double max;
 	protected String observedVariable;
 	private String counterType;
-	// TODO 
-//	private long numSamples;
-	private long numSamples = 10;
+
+	private long numSamples;
 
 	/**
 	 * Basic constructor

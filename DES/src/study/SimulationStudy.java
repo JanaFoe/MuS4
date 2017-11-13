@@ -51,38 +51,9 @@ public class SimulationStudy {
 		System.out.println("Main - vor sim.report()");
 		
 //		sim.report();
-		
-		
-		DiscreteAutocorrelationCounter test = new DiscreteAutocorrelationCounter("test", 0);
-//		System.out.println(test.getAutoCovariance(1));
-		System.out.println(test.getAutoCorrelation(0)+"\n");
 
 		DiscreteAutocorrelationCounter test1 = new DiscreteAutocorrelationCounter("test", 1);
-		System.out.println(test1.getAutoCorrelation(1)+"\n");
-
-		DiscreteAutocorrelationCounter test2 = new DiscreteAutocorrelationCounter("test", 2);
-		System.out.println(test2.getAutoCorrelation(2)+"\n");
-
-		DiscreteAutocorrelationCounter test3 = new DiscreteAutocorrelationCounter("test", 3);
-		System.out.println(test3.getAutoCorrelation(3)+"\n");
-
-		DiscreteAutocorrelationCounter test4 = new DiscreteAutocorrelationCounter("test", 4);
-		System.out.println(test4.getAutoCorrelation(4)+"\n");
-
-		DiscreteAutocorrelationCounter test5 = new DiscreteAutocorrelationCounter("test", 5);
-		System.out.println(test5.getAutoCorrelation(5)+"\n");
-
-		DiscreteAutocorrelationCounter test6 = new DiscreteAutocorrelationCounter("test", 6);
-		System.out.println(test6.getAutoCorrelation(6)+"\n");
-
-		DiscreteAutocorrelationCounter test7 = new DiscreteAutocorrelationCounter("test", 7);
-		System.out.println(test7.getAutoCorrelation(7)+"\n");
-
-		DiscreteAutocorrelationCounter test8 = new DiscreteAutocorrelationCounter("test", 8);
-		System.out.println(test8.getAutoCorrelation(8)+"\n");
-
-		DiscreteAutocorrelationCounter test9 = new DiscreteAutocorrelationCounter("test", 9);
-		System.out.println(test9.getAutoCorrelation(9)+"\n");
+		System.out.println(test1.report()+"\n");
 }
 
 	// PARAMETERS

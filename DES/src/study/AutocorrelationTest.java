@@ -10,6 +10,7 @@ import simulation.lib.counter.DiscreteAutocorrelationCounter;
 public class AutocorrelationTest {
 
     public static void testAutocorrelation() {
+    	
 //    	DiscreteAutocorrelationCounter test = new DiscreteAutocorrelationCounter("test", 5);
 //		System.out.println(test.getAutoCovariance(1));
     }
