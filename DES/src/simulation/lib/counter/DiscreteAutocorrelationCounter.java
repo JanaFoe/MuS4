@@ -74,26 +74,28 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		double sumLastj  = 0.0;
 		double temp 	 = 0.0;
 
-
-		for(int i = 0; i < getNumSamples(); i++) {
-			if(i<=lag) {
-				sumFirstj += arrSamples[i];
-				System.out.println("if Fall - "+i+" lag: "+lag+"  arrSamples[i]"+arrSamples[i]);
-			}
-			
-			else {
-				sumLastj  += arrSamples[i];
-				System.out.println("else Fall - "+i+" lag: "+lag+"  arrSamples[i]"+arrSamples[i]);
-			}
+		/**
+		 * Summe 0 bis lag
+		 */
+		for(int i = 0; i < lag; i++) {
+			sumFirstj += arrSamples[i];
+			System.out.println(i+" lag: "+lag+"  arrSamples[i]"+arrSamples[i]);
+		}
+		/**
+		 * Summe n-lag bis n
+		 */
+		for(int i = ((int)getNumSamples()-lag); i < getNumSamples(); i++) {
+			sumLastj += arrSamples[i];
+			System.out.println(i+" lag: "+lag+"  arrSamples[i]"+arrSamples[i]);
 		}
 		System.out.println("sumFirstj "+sumFirstj+"  sumLastj "+sumLastj);
 
 
-		for(int j = 0; j < getNumSamples()-lag; j++ ) {
-			temp += arrSamples[j]*arrSamples[j+lag];  }
+		for(int j = lag; j < getNumSamples(); j++ ) {
+			temp += arrSamples[j]*arrSamples[j-lag];  }
 		
 
-		autoCov = (1/(getNumSamples()-lag)) * ( temp - mean * ( (2 * sumPowerOne) - sumFirstj -sumLastj )) + Math.pow(mean,2);
+		autoCov = (1/(double)(getNumSamples()-lag)) * (double)( temp - (mean * ( (2 * sumPowerOne) - sumFirstj -sumLastj ))) + Math.pow(mean,2);
 //		autoCov = (1/(getNumSamples()-lag)) * ( temp - getMean() * ( 2 * getSumPowerOne()- sumFirstj -sumLastj )) + Math.pow(getMean(),2);
 
 		System.out.println("temp  "+temp+"  autocov "+autoCov);
