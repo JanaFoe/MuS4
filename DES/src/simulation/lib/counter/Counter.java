@@ -28,7 +28,7 @@ public abstract class Counter implements IStatisticObject{
 	private String counterType;
 	// TODO 
 //	private long numSamples;
-	private long numSamples = 4;
+	private long numSamples = 10;
 
 	/**
 	 * Basic constructor

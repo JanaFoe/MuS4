@@ -16,10 +16,10 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	 * Hint: see section 4.4 in course syllabus
 	 */
 	private int maxLag;
-	private double[] arrSamples = {0,1,1,2};
-	private double sumPowerOne = 4;
-	private double mean = 1; 
-	private double variance = 0.67;
+	private double[] arrSamples = {0,1,2,3,4,5,6,7,8,9};
+	private double sumPowerOne = 45;
+	private double mean = 4.5; 
+	private double variance = 8.89;
 	//		(7/2)  4/(4-1)* ((6/4)-(1*1)) = 4/3 *(3/2 -1) = 4/3 * 1/2 = 4/6 = 
 
 		
