@@ -11,7 +11,14 @@ public class AutocorrelationTest {
 
     public static void testAutocorrelation() {
     	
-//    	DiscreteAutocorrelationCounter test = new DiscreteAutocorrelationCounter("test", 5);
-//		System.out.println(test.getAutoCovariance(1));
+    	DiscreteAutocorrelationCounter test = new DiscreteAutocorrelationCounter("test", 5);
+    	test.reset();
+		
+    	for (int i = 0; i< 10; i++) {
+    		test.count(2);
+			
+		}
+    	
+    	System.out.println(test.report());
     }
 }

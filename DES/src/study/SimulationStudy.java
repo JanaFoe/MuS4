@@ -43,17 +43,18 @@ public class SimulationStudy {
 		 */
 		System.out.println("Main - vor sim.start()");
 
-//		sim.start();		
+		sim.start();		
  		/*
 		 * print out report
 		 */
 
 		System.out.println("Main - vor sim.report()");
 		
-//		sim.report();
+		sim.report();
 
-		DiscreteAutocorrelationCounter test1 = new DiscreteAutocorrelationCounter("test", 1);
-		System.out.println(test1.report()+"\n");
+		AutocorrelationTest test = new AutocorrelationTest();
+		test.testAutocorrelation();
+		
 }
 
 	// PARAMETERS

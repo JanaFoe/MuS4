@@ -23,8 +23,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 //	private double variance = 8.89;
 
 		
-	private double[] arrVars = new double[(int)getNumSamples()];
-
+	private double[] arrVars = new double[1000];
 	private int arrayCounter = 0;
 
 	/**
@@ -37,6 +36,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		this.maxLag = maxLag;
 	}
 
+	
 	/**
 	 * Konstruktor
 	 * @param variable
@@ -59,12 +59,13 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 
 
 	public void count(double x) {
-		super.count(x);
+//		super.count(x);
 		increaseSumPowerOne(x);   
 		increaseSumPowerTwo(x * x); 
 
 		arrVars[arrayCounter] = x;  
 		arrayCounter++;
+		System.out.println(arrayCounter+"  "+arrVars[arrayCounter-1]);
 	}
 
 	public double getAutoCovariance(int lag) {
@@ -85,17 +86,17 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		for(int i = ((int)getNumSamples()-lag); i < getNumSamples(); i++) {
 			sumLastj += arrVars[i];
 		}
-		System.out.println("sumFirstj "+sumFirstj+"  sumLastj "+sumLastj);
+		//System.out.println("sumFirstj "+sumFirstj+"  sumLastj "+sumLastj);
 
 
 		for(int j = lag; j < getNumSamples(); j++ ) {
 			temp += arrVars[j]*arrVars[j-lag];  }
 		
 
-		System.out.println("GetMean "+getMean()+"  getSumPowerOne "+getSumPowerOne());
+		//System.out.println("GetMean "+getMean()+"  getSumPowerOne "+getSumPowerOne());
 		autoCov = (1/(double)(getNumSamples()-lag)) * (double)( temp - (getMean() * ( (2 * getSumPowerOne()) - sumFirstj -sumLastj ))) + Math.pow(getMean(),2);
 
-		System.out.println("temp  "+temp+"  autocov "+autoCov);
+		//System.out.println("temp  "+temp+"  autocov "+autoCov);
 
 		return autoCov;
 		
@@ -107,7 +108,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 
 		if(getVariance() == 0) {
 			autoCorr = 0.0;
-			System.out.println("getAutoCorr- getVariance= 0!!!!");
+			//System.out.println("getAutoCorr- getVariance= 0!!!!");
 		}
 		else{
 			autoCorr = (getAutoCovariance(lag) / getVariance());
