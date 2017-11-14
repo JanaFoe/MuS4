@@ -34,6 +34,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	public DiscreteAutocorrelationCounter(String variable, int maxLag) {
 		super(variable,"counter type: discrete-time autocorrelation counter");
 		this.maxLag = maxLag;
+		reset();
 	}
 
 	
@@ -46,6 +47,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	public DiscreteAutocorrelationCounter(String variable, String type, int maxLag) {
 		super(variable,type);
 		this.maxLag = maxLag; 
+		reset();
 	}
 
 
@@ -54,7 +56,8 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	}
 
 	public void setMaxLag(long maxLag) {
-		this.maxLag = (int) maxLag;
+		this.maxLag = (int)maxLag;
+		reset();
 	}
 
 
@@ -149,14 +152,6 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		writeCsv(outputdir, content, labels);
 	}
 
-
-	// public void reset() {  COUNTER
-	//  sumPowerOne = 0;
-	//  sumPowerTwo = 0;
-	//  min = Double.POSITIVE_INFINITY;
-	//  max = Double.NEGATIVE_INFINITY;
-	//  numSamples = 0;
-	// }
 
 	public void reset() {
 		super.reset();
