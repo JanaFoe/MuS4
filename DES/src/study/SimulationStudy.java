@@ -33,24 +33,20 @@ public class SimulationStudy {
 	 * Main method
 	 */
 	public static void main(String[] args) {
-		System.out.println("Erste Zeile Main");
-		/*
+	    /*
 		 * create simulation object
 		 */
 		Simulator sim = new Simulator();
+		
 		/*
 		 * run simulation
 		 */
-		System.out.println("Main - vor sim.start()");
-
-		sim.start();		
+		//sim.start();
+		
  		/*
 		 * print out report
 		 */
-
-		System.out.println("Main - vor sim.report()");
-		
-		sim.report();
+		//sim.report();
 
 		AutocorrelationTest test = new AutocorrelationTest();
 		test.testAutocorrelation();
