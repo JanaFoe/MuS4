@@ -60,8 +60,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		
 		arrVars[arrayCounter] = x;  
 		arrayCounter++;
-		
-	}
+		}
 
 	public double getAutoCovariance(int lag) {
 		double autoCov 	 = 0.0;
@@ -138,5 +137,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	@Override
 	public void reset() {
 		super.reset();
+		arrVars = new double[1000]; //initaler zusatand
+
 	}
 }

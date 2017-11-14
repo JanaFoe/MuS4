@@ -41,12 +41,12 @@ public class SimulationStudy {
 		/*
 		 * run simulation
 		 */
-		sim.start();
+		//sim.start();
 		
  		/*
 		 * print out report
 		 */
-		sim.report();
+		//sim.report();
 
 		AutocorrelationTest test = new AutocorrelationTest();
 		test.testAutocorrelation();
