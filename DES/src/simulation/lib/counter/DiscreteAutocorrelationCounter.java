@@ -16,15 +16,8 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	 * Hint: see section 4.4 in course syllabus
 	 */
 	private int maxLag;
-
-//	private double[] arrSamples = {0,1,2,3,4,5,6,7,8,9};
-//	private double sumPowerOne = 45;
-//	private double mean = 4.5; 
-//	private double variance = 8.89;
-
-		
-	private double[] arrVars = new double[1000];
-	private int arrayCounter = 0;
+	private double[] arrVars;
+	private int arrayCounter;
 
 	/**
 	 * Konstruktor
@@ -34,6 +27,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	public DiscreteAutocorrelationCounter(String variable, int maxLag) {
 		super(variable,"counter type: discrete-time autocorrelation counter");
 		this.maxLag = maxLag;
+		reset();
 	}
 
 	
@@ -46,6 +40,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	public DiscreteAutocorrelationCounter(String variable, String type, int maxLag) {
 		super(variable,type);
 		this.maxLag = maxLag; 
+		reset();
 	}
 
 
@@ -54,19 +49,21 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	}
 
 	public void setMaxLag(long maxLag) {
-		this.maxLag = (int) maxLag;
+		this.maxLag = (int)maxLag;
+		reset();
 	}
 
 
+	@Override
 	public void count(double x) {
-//		super.count(x);
-		increaseSumPowerOne(x);   
-		increaseSumPowerTwo(x * x); 
-
+		super.count(x);
+		
 		arrVars[arrayCounter] = x;  
 		arrayCounter++;
-		System.out.println(arrayCounter+"  "+arrVars[arrayCounter-1]);
-	}
+
+		getSumPowerOne();
+		getSumPowerTwo();
+		}
 
 	public double getAutoCovariance(int lag) {
 		double autoCov 	 = 0.0;
@@ -74,29 +71,20 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		double sumLastj  = 0.0;
 		double temp 	 = 0.0;
 
-		/**
-		 * Summe 0 bis lag
-		 */
+		//teil 1: summe bis lag
 		for(int i = 0; i < lag; i++) {
 			sumFirstj += arrVars[i];
 		}
-		/**
-		 * Summe n-lag bis n
-		 */
+
+		//teil 2: summe bis numSamples -lag
 		for(int i = ((int)getNumSamples()-lag); i < getNumSamples(); i++) {
 			sumLastj += arrVars[i];
 		}
-		//System.out.println("sumFirstj "+sumFirstj+"  sumLastj "+sumLastj);
-
-
+		
 		for(int j = lag; j < getNumSamples(); j++ ) {
 			temp += arrVars[j]*arrVars[j-lag];  }
 		
-
-		//System.out.println("GetMean "+getMean()+"  getSumPowerOne "+getSumPowerOne());
 		autoCov = (1/(double)(getNumSamples()-lag)) * (double)( temp - (getMean() * ( (2 * getSumPowerOne()) - sumFirstj -sumLastj ))) + Math.pow(getMean(),2);
-
-		//System.out.println("temp  "+temp+"  autocov "+autoCov);
 
 		return autoCov;
 		
@@ -105,14 +93,19 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 
 	public double getAutoCorrelation(int lag) {
 		double autoCorr = 0.0;
-
-		if(getVariance() == 0) {
-			autoCorr = 0.0;
-			//System.out.println("getAutoCorr- getVariance= 0!!!!");
-		}
-		else{
+		
+		if(lag <= maxLag) {
+			if(getVariance() == 0) {
+			autoCorr = 1.0;
+			}
+			else {
 			autoCorr = (getAutoCovariance(lag) / getVariance());
+			}
 		}
+		else {
+			throw new IllegalArgumentException("ein lag <= "+ maxLag + " ist noetig!!");
+		}
+		
 
 		return autoCorr;
 	}
@@ -150,15 +143,11 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	}
 
 
-	// public void reset() {  COUNTER
-	//  sumPowerOne = 0;
-	//  sumPowerTwo = 0;
-	//  min = Double.POSITIVE_INFINITY;
-	//  max = Double.NEGATIVE_INFINITY;
-	//  numSamples = 0;
-	// }
-
+	@Override
 	public void reset() {
 		super.reset();
+		arrVars = new double[1000]; 
+		arrayCounter = 0;
+
 	}
 }
