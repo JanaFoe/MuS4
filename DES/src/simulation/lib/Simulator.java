@@ -206,10 +206,13 @@ public class Simulator implements IEventObserver {
 
             sims.statisticObjects.get(sims.dtcServiceTime).count(simTimeToRealTime(serviceTime));
             sims.statisticObjects.get(sims.dthServiceTime).count(simTimeToRealTime(serviceTime));
+            
             /*
              * TODO Problem 4.2.5 - Update the DiscreteAutocorrelationCounter here
              * Count customer's waiting time
              */
+            sims.statisticObjects.get(sims.dtaWaitingTime).count(simTimeToRealTime(serviceTime));
+            sims.statisticObjects.get(sims.dtaWaitingTime).count(simTimeToRealTime(waitingTime));
 
         }
         // update server utilization
@@ -249,15 +252,16 @@ public class Simulator implements IEventObserver {
 			 * Use your random variable contained in the SimulationStudy object
 			 * !!! Mind the difference between simulation and real time and do conversions accordingly !!!
 			 */
-            long interarrivalTime = 0;
+            long interarrivalTime = sims.randVarInterArrivalTime.getLongRV();
             pushNewEvent(new CustomerArrivalEvent(state, this.getSimTime() + interarrivalTime));
+
         } else if (c == ServiceCompletionEvent.class) {
             /*
 			 * TODO Problem 4.2.1 - Create random service times
 			 * Use your random variable contained in the SimulationStudy object
 			 * !!! Mind the difference between simulation and real time and do conversions accordingly !!!
 			 */
-            long serviceTime = 0;
+            long serviceTime = sims.randVarServiceTime.getLongRV();
             pushNewEvent(new ServiceCompletionEvent(state, this.getSimTime() + serviceTime));
         }
     }

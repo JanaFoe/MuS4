@@ -43,15 +43,15 @@ public class SimulationStudy {
 		/*
 		 * run simulation
 		 */
-//		sim.start();
+		sim.start();
 		
  		/*
 		 * print out report
 		 */
-//		sim.report();
+		sim.report();
 
 		AutocorrelationTest test = new AutocorrelationTest();
-//		test.testAutocorrelation();		
+		test.testAutocorrelation();		
 }
 
 	// PARAMETERS
@@ -183,9 +183,9 @@ public class SimulationStudy {
 		 * TODO Problem 4.2.5 - Create a DiscreteAutocorrelationCounter here
 		 * 
 		 */
-		  statisticObjects.put(dtaWaitingTime, new DiscreteAutocorrelationCounter("waiting_time_per_customer",
-				    20));
+		  statisticObjects.put(dtaWaitingTime, new DiscreteAutocorrelationCounter("waiting_time_per_customer",20));
 
+		  
 	}
 
 

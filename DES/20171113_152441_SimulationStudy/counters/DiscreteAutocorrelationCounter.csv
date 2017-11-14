@@ -1,2 +1,0 @@
-#counter ; numSamples ; MEAN; VAR; STD; CVAR; MIN; MAX; COV; CORR
-test 100 (lag=0);0;0.0;0.0;0.0;0.0;Infinity;-Infinity;NaN;0.0
