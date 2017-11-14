@@ -60,7 +60,7 @@ public class AutocorrelationTest {
     	System.out.println(example5.report());
     	
     	//========== Example 6: X = -2,-2,-2,-2,-2,-2.... 
-    	DiscreteAutocorrelationCounter example6 = new DiscreteAutocorrelationCounter("X = 0,1,2,...,9", 9);
+    	DiscreteAutocorrelationCounter example6 = new DiscreteAutocorrelationCounter("X = 0,1,2,...,99", 9);
     	  	
     	for (double i = 0; i < 100; i++) {
     		example6.count(i);

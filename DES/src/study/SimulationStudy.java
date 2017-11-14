@@ -27,7 +27,9 @@ public class SimulationStudy {
      * Note: Units are real time units (seconds).
      * They get converted to simulation time units in setSimulationParameters.
      */
-	protected long cSimulationTime = 100000;
+	protected long cSimulationTime = 100000;	// simulation time fuer 10^5
+//	protected long cSimulationTime = 10;		// simulation time fuer 10^1
+	
 
 	/**
 	 * Main method
@@ -41,15 +43,15 @@ public class SimulationStudy {
 		/*
 		 * run simulation
 		 */
-		//sim.start();
+//		sim.start();
 		
  		/*
 		 * print out report
 		 */
-		//sim.report();
+//		sim.report();
 
 		AutocorrelationTest test = new AutocorrelationTest();
-		test.testAutocorrelation();		
+//		test.testAutocorrelation();		
 }
 
 	// PARAMETERS
@@ -136,58 +138,17 @@ public class SimulationStudy {
 		 * Notice that the mean values need to be modified for 4.2.2 and 4.2.5!
 		 */
 
-//		this.randVarInterArrivalTime = new RandVar();
-//		this.randVarServiceTime      = new RandVar(); 
-
+		/**
+		 * InterArrivelTime auf 1 Sekunde - A4.2.1 + 4.2.2
+		 * ServiceTime auf 80% = 0.8 	  - A4.2.1 + 4.2.2
+		 */
+		this.randVarInterArrivalTime = new Exponential(new StdRNG(1), simulator.realTimeToSimTime(1));
+		this.randVarServiceTime      = new Exponential(new StdRNG(2), simulator.realTimeToSimTime(0.8));
 		
-		StdRNG stdRng    = new StdRNG();
-		RandVar instance = new RandVar(stdRng){
-			
-			@Override
-			public void setStdDeviation(double s) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void setMeanAndStdDeviation(double m, double s) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void setMean(double m) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public double getVariance() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public String getType() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public double getRV() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public double getMean() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-		};
-		
-		this.randVarInterArrivalTime = instance;
-		
+		/**
+		 * Service Time auf 95% 	- A4.2.5
+		 */
+//		this.randVarServiceTime      = new Exponential(new StdRNG(2), simulator.realTimeToSimTime(0.95));
 	}
 
 	/**
@@ -201,6 +162,7 @@ public class SimulationStudy {
 
 		statisticObjects.put(dtcWaitingTime, new DiscreteCounter("waiting time/customer"));
 		/*
+		 * TODO
 		 * Problem 4.2.4
 		 * The statistic object for counting the waiting times in a histogram is already created here
 		 */
@@ -221,7 +183,8 @@ public class SimulationStudy {
 		 * TODO Problem 4.2.5 - Create a DiscreteAutocorrelationCounter here
 		 * 
 		 */
-		
+		  statisticObjects.put(dtaWaitingTime, new DiscreteAutocorrelationCounter("waiting_time_per_customer",
+				    20));
 
 	}
 
