@@ -93,13 +93,19 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 
 	public double getAutoCorrelation(int lag) {
 		double autoCorr = 0.0;
-
-		if(getVariance() == 0) {
-			autoCorr = 0.0;
-		}
-		else{
+		
+		if(lag <= maxLag) {
+			if(getVariance() == 0) {
+			autoCorr = 1.0;
+			}
+			else {
 			autoCorr = (getAutoCovariance(lag) / getVariance());
+			}
 		}
+		else {
+			throw new IllegalArgumentException("ein lag <= "+ maxLag + " ist noetig!!");
+		}
+		
 
 		return autoCorr;
 	}
