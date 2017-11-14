@@ -13,11 +13,9 @@ public class AutocorrelationTest {
     	
     	DiscreteAutocorrelationCounter test = new DiscreteAutocorrelationCounter("test", 5);
     	test.reset();
-		
-    	System.out.println("start....");
-    	for (int i = 0; i< 10; i++) {
-    		test.count(2);
-			
+  	
+    	for (double i = 0; i< 10; i++) {
+    		test.count(i);
 		}
     	
     	System.out.println(test.report());

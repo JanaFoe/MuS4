@@ -17,7 +17,7 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	 */
 	private int maxLag;
 	private double[] arrVars;
-	private int arrayCounter = 0;
+	private int arrayCounter;
 
 	/**
 	 * Konstruktor
@@ -60,6 +60,9 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 		
 		arrVars[arrayCounter] = x;  
 		arrayCounter++;
+
+		getSumPowerOne();
+		getSumPowerTwo();
 		}
 
 	public double getAutoCovariance(int lag) {
@@ -137,7 +140,8 @@ public class DiscreteAutocorrelationCounter extends DiscreteCounter {
 	@Override
 	public void reset() {
 		super.reset();
-		arrVars = new double[1000]; //initaler zusatand
+		arrVars = new double[1000]; 
+		arrayCounter = 0;
 
 	}
 }
