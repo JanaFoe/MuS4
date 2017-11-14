@@ -53,8 +53,7 @@ public class SimulationStudy {
 		sim.report();
 
 		AutocorrelationTest test = new AutocorrelationTest();
-		test.testAutocorrelation();
-		
+		test.testAutocorrelation();		
 }
 
 	// PARAMETERS
@@ -140,6 +139,59 @@ public class SimulationStudy {
 		 * These random variables are later used in the Simulator class to create random interarrival and service times
 		 * Notice that the mean values need to be modified for 4.2.2 and 4.2.5!
 		 */
+
+//		this.randVarInterArrivalTime = new RandVar();
+//		this.randVarServiceTime      = new RandVar(); 
+
+		
+		StdRNG stdRng    = new StdRNG();
+		RandVar instance = new RandVar(stdRng){
+			
+			@Override
+			public void setStdDeviation(double s) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void setMeanAndStdDeviation(double m, double s) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void setMean(double m) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public double getVariance() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			@Override
+			public String getType() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public double getRV() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			@Override
+			public double getMean() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+		
+		this.randVarInterArrivalTime = instance;
+		
 	}
 
 	/**
